@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kobalt</title>
+
+    <!-- Google Font for Futuristic Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(to bottom left, rgb(5, 15, 35), rgb(1, 1, 5), rgb(0, 0, 0));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.8;
+            animation: moveGrid 5s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { background-position: 0 0; }
+            100% { background-position: 20px 20px; }
+        }
+
+        /* Header Styling */
+        .head {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 7vh;
+            background-color: rgb(5, 5, 5);
+            z-index: 3;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .title {
+            font-size: 2rem;
+            color: cyan;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 5px cyan, 0 0 10px cyan, 0 0 20px cyan;
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 5px cyan, 0 0 10px cyan, 0 0 20px cyan;
+            }
+            100% {
+                text-shadow: 0 0 10px cyan, 0 0 20px cyan, 0 0 40px cyan;
+            }
+        }
+
+        .back-button {
+            display: block;
+            margin-top: 20px;
+            padding: 12px 35px;
+            color: cyan;
+            font-size: 1.2rem;
+            text-decoration: none;
+            background: black;
+            border: 2px solid cyan;
+            border-radius: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .back-button:hover {
+            background: cyan;
+            color: black;
+        }
+
+        /* Copy Box Styling */
+        .copy-box-container {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            z-index: 2;
+        }
+
+        .copy-box-title {
+            font-size: 1.2rem;
+            color: cyan;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px cyan, 0 0 10px cyan;
+        }
+
+        .copy-box {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid cyan;
+            border-radius: 5px;
+            padding: 15px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+        }
+
+        .copy-box pre {
+            margin: 0;
+            overflow-x: auto;
+            outline: none; /* Remove outline */
+            border: none; /* Ensure no border */
+            padding: 0; /* Remove default padding */
+        }
+        
+        .copy-box code {
+            display: block;
+            padding: 10px; /* Add padding inside the code block */
+            background: rgba(0, 0, 0, 0.5); /* Slightly lighter background for code */
+            border-radius: 3px; /* Rounded corners for code block */
+            outline: none; /* Remove outline */
+            border: none; /* Ensure no border */
+            font-family: 'Orbitron', sans-serif;
+            color: cyan;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: cyan;
+            color: black;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .copy-button:hover {
+            background: black;
+            color: cyan;
+            border: 1px solid cyan;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grid"></div>
+
+    <!-- Header -->
+    <div class="head">
+        <div class="title">Kobalt</div>
+    </div>
+
+    <!-- Copy Box Container -->
+    <div class="copy-box-container">
+        <!-- Title for the Copy Box -->
+        <div class="copy-box-title">Example Code</div>
+
+        <!-- Copy Box -->
+        <div class="copy-box">
+            <pre><code>Print("Hello, World")</code></pre>
+            <button class="copy-button">Copy</button>
+        </div>
+    </div>
+
+    <script>
+        // Copy to Clipboard Functionality
+        document.querySelector('.copy-button').addEventListener('click', function () {
+            const code = document.querySelector('.copy-box code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            }).catch(() => {
+                alert('Failed to copy code.');
+            });
+        });
+    </script>
+
+</body>
+</html>
