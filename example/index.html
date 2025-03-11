@@ -93,6 +93,25 @@
             color: black;
         }
 
+        /* Music Toggle Button */
+        .music-toggle {
+            background: cyan;
+            color: black;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .music-toggle:hover {
+            background: black;
+            color: cyan;
+            border: 1px solid cyan;
+        }
+
         /* Copy Box Styling */
         .copy-box-container {
             position: relative;
@@ -168,6 +187,8 @@
     <!-- Header -->
     <div class="head">
         <div class="title">Kobalt</div>
+        <!-- Music Toggle Button -->
+        <button class="music-toggle" id="music-toggle">Play Music</button>
     </div>
 
     <!-- Copy Box Container -->
@@ -177,12 +198,46 @@
 
         <!-- Copy Box -->
         <div class="copy-box">
-            <pre><code>Print("Hello, World")</code></pre>
+            <pre><code>function helloWorld()
+    print("Hello, Lua!")
+end
+
+helloWorld()</code></pre>
             <button class="copy-button">Copy</button>
         </div>
     </div>
 
+    <!-- Background Music -->
+    <audio id="background-music" loop>
+        <source src="https://raw.githubusercontent.com/Kobalt-z/Kobalt-z.github.io/main/Somewhere%20-%20VIQ.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <script>
+        // Music Toggle Functionality
+        const musicToggle = document.getElementById('music-toggle');
+        const backgroundMusic = document.getElementById('background-music');
+    
+        // Attempt to autoplay music when the page loads
+        backgroundMusic.play().then(() => {
+            musicToggle.textContent = 'Pause Music';
+        }).catch((error) => {
+            // Autoplay was blocked
+            console.error('Autoplay was blocked:', error);
+            musicToggle.textContent = 'Play Music'; // Set button to "Play Music" if autoplay fails
+        });
+    
+        // Toggle music playback on button click
+        musicToggle.addEventListener('click', () => {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+                musicToggle.textContent = 'Pause Music';
+            } else {
+                backgroundMusic.pause();
+                musicToggle.textContent = 'Play Music';
+            }
+        });
+    
         // Copy to Clipboard Functionality
         document.querySelector('.copy-button').addEventListener('click', function () {
             const code = document.querySelector('.copy-box code').innerText;
@@ -192,7 +247,6 @@
                 alert('Failed to copy code.');
             });
         });
-    </script>
-
+    </script>    
 </body>
 </html>
