@@ -51,6 +51,11 @@
             height: 2px; /* Thinner for horizontal scrollbars */
         }
 
+        @media (max-width: 768px) {
+            .head-text {
+                display: Kobalt;
+            }
+        }
 
         .grid {
             position: absolute;
@@ -345,7 +350,7 @@
 
     <!-- Header -->
     <div class="head">
-        <div class="title">Kobalt</div>
+        <div class="title" id="headertxt">Kobalt</div>
         <!-- Music Toggle Button -->
         <button class="music-toggle" id="music-toggle">Play Music</button>
     </div>
@@ -434,15 +439,19 @@ helloWorld()</code></pre>
         print("Hello, Lua!")
     end
     
-    helloWorld()`
+    helloWorld()`,
+                head: `Kobalt - Example`
             },
             'radio-jpj': {
                 title: 'JoodPakJai Script',
-                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Kobalt-z/joodpakjai/refs/heads/main/Main.Lua"))()`
+                code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Kobalt-z/joodpakjai/refs/heads/main/Main.Lua"))()`,
+                head: `Kobalt - JoodPakJai` // change title and head (<div class="title">Kobalt</div>)
             }
         };
     
         // Add event listeners to radio buttons
+        const titleDiv = document.getElementById("headertxt");
+
         radioButtons.forEach(radio => {
             radio.addEventListener('change', () => {
                 if (radio.checked) {
@@ -450,18 +459,19 @@ helloWorld()</code></pre>
                     if (content) {
                         codeTitle.textContent = content.title;
                         codeBox.textContent = content.code;
+                        titleDiv.textContent = content.head;
                     }
                 }
             });
         });
-    
-        // Initialize with the default checked radio button
-        const defaultRadio = document.querySelector('.radio-container input[checked]');
+        
+        // Initialize the default checked radio button
         if (defaultRadio) {
             const defaultContent = contentMap[defaultRadio.id];
             if (defaultContent) {
                 codeTitle.textContent = defaultContent.title;
                 codeBox.textContent = defaultContent.code;
+                titleDiv.textContent = defaultContent.head; // Update title on load
             }
         }
     </script>
