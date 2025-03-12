@@ -21,6 +21,37 @@
             font-family: 'Orbitron', sans-serif;
         }
 
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 2px; /* Width */
+        }
+
+        /* Scrollbar Track */
+        ::-webkit-scrollbar-track {
+            background: #111; /* Dark background */
+            border-radius: 5px;
+        }
+
+        /* Scrollbar Thumb (Handle) */
+        ::-webkit-scrollbar-thumb {
+            background: cyan; /* Base color */
+            border-radius: 5px;
+            box-shadow: 0px 0px 0px cyan, 0px 0px 0px cyan; /* Glowing effect */
+            transition: 0.3s ease-in-out;
+        }
+
+        /* On Hover - Stronger Glow */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0ff; /* Brighter cyan */
+            box-shadow: 0px 0px 1px cyan, 0px 0px 1px cyan;
+        }
+
+        /* For Horizontal Scrollbars */
+        ::-webkit-scrollbar-horizontal {
+            height: 2px; /* Thinner for horizontal scrollbars */
+        }
+
+
         .grid {
             position: absolute;
             top: 0;
