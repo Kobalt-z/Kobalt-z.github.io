@@ -474,6 +474,12 @@ helloWorld()</code></pre>
                 titleDiv.textContent = defaultContent.head; // Update title on load
             }
         }
+
+        // Detect if the user is on a mobile device
+        if (window.innerWidth <= 768 || /Mobi|Android/i.test(navigator.userAgent)) {
+            // Redirect to /nonsuport page if on mobile
+            window.location.href = "/nonsuport";
+        }
     </script>
 </body>
 </html>
